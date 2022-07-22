@@ -2,7 +2,7 @@
   --background-0: transparent;
   --background-1: #222;
   --background-2: #eee;
-  --color-font-1: #eee;
+  --color-font-1: #222;
   --color-font-2: #bbb;
   --font-1: sans-serif;
   --scrollbar-border-radius: 4px;
@@ -11,7 +11,9 @@
 }
 
 html {
-  background: var(--background-1);
+  background: rgb(240,248,255);
+  background: linear-gradient(0deg, rgba(240,248,255,1) 33%, rgba(150,197,207,1) 100%);
+  background-image: url(./bright-squares.png);
   color: var(--color-font-1);
   font-family: var(--font-1);
 }
@@ -19,6 +21,10 @@ html {
 body {
   background: var(--background-0);
   font-size: var(--size-font-1);
+}
+
+footer {
+  background: var(--background-0);
 }
 
 *::-webkit-scrollbar {
