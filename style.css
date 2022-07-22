@@ -11,8 +11,7 @@
 }
 
 html {
-  background-image: url(./asstes/bright-squares.png);
-  opacity: 0.3;
+  background-image: url(./assets/bright-squares.png);
   background: rgb(240,248,255,0.75);
   background: linear-gradient(0deg, rgba(240,248,255,0.75) 33%, rgba(150,197,207,0.75) 100%);
   color: var(--color-font-1);
