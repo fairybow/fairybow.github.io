@@ -17,6 +17,7 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
   color: var(--color-font-1);
+  min-height: 100%;
   font-family: var(--font-1);
 }
 
