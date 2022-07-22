@@ -1,1 +1,41 @@
+:root {
+  --background-0: transparent;
+  --background-1: #222;
+  --background-2: #eee;
+  --color-font-1: #eee;
+  --color-font-2: #bbb;
+  --font-1: sans-serif;
+  --scrollbar-border-radius: 4px;
+  --scrollbar-hw: 9px;
+  --size-font-1: 12pt;
+}
 
+html {
+  background: var(--background-1);
+  color: var(--color-font-1);
+  font-family: var(--font-1);
+  font-size: var(--size-font-1);
+}
+
+body {
+  background: var(--background-0);
+}
+
+*::-webkit-scrollbar {
+  height: var(--scrollbar-hw);
+  width: var(--scrollbar-hw);
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--background-2);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #4f4f4f;
+  border: 0px none #b5b5b5;
+  border-radius: var(--scrollbar-border-radius);
+}
+
+*::-webkit-scrollbar-thumb:active {
+  border-radius: 0px;
+}
