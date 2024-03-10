@@ -48,6 +48,7 @@ body {
 	}
 
 footer {
+background-color: inherit;
 	bottom: 0;
 	height: var(--footerHeight);
 	position: fixed;
@@ -71,7 +72,6 @@ a {
 	}
 
 .navbar {
-	background-color: var(--lightBase1);
 	height: inherit;
 	overflow: hidden;
 	text-align: center;
