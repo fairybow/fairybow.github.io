@@ -48,7 +48,7 @@ body {
 	}
 
 footer {
-background-color: inherit;
+	background-color: var(--lightBase1);
 	bottom: 0;
 	height: var(--footerHeight);
 	position: fixed;
