@@ -13,16 +13,19 @@
 	--lightAccent3: #FF9C55;
 	--fontFamily1: Titillium Web, sans-serif;
 	--borderSize: 3px;
-	--navBarWidth: 6em;
-	--gap: 3em;
+	--navBarWidth: 5em;
+	--gap: 1em;
 	--headerHeight: 75px;
 	--footerHeight: 30px;
 }
 
-body {
+html {
 	color: var(--lightAccent1);
 	background-color: var(--lightBase1);
 	font-family: var(--fontFamily1);
+}
+
+body {
 	height: calc(100vh - var(--footerHeight));
 }
 
@@ -71,6 +74,7 @@ a {
 	background-color: var(--lightBase1);
 	height: inherit;
 	overflow: hidden;
+	text-align: center;
 	width: var(--navBarWidth);
 }
 
@@ -79,7 +83,6 @@ a {
 		color: var(--lightAccent1);
 		display: block;
 		padding: 14px 16px;
-		text-align: center;
 		margin-bottom: calc(var(--borderSize) * -1);
 	}
 
