@@ -1,88 +1,112 @@
-function openHref(href) {
-	if (href.endsWith('.md')) {
-		loadMarkdown(href);
-	} else {
-		$("#pagearea").load(href);
-	}
+var previousContent;
+
+function clearContent() {
+	$("#content").html("");
+	previousContent = null;
 }
 
-function loadPreviousHref() {
-	let previous_page = localStorage.getItem('page');
+function handleControlButton() {
+	let button = document.getElementById("navbar-control");
+	let scrollDiv = $("#page-container");
 
-	if (previous_page !== null) {
-		openHref(previous_page);
-	}
+	scrollDiv.scroll(function() {
+		(scrollDiv.scrollTop() > 20)
+			? button.textContent = "arrow_upward"
+			: button.textContent = "close";
+	});
+	
+	button.onclick = function() {
+		(button.textContent === "close")
+			? clearContent()
+			: scrollDiv.animate({ scrollTop: 0 }, 300);
+	};
 }
 
-function saveHref(href) {
-	localStorage.setItem('page', href);
-}
+function setupControlButton() {
+	let button = document.getElementById("navbar-control");
+	let observer = new MutationObserver(function() {
+		button.style.display = ($("#content").html() !== "")
+			? "flex"
+			: "none";
+	});
 
-function loadNavbar() {
-	$("#navbar").load("menus/navbar.html");
-}
+	button.textContent = "close";
+	button.style.display = "none";
 
-function loadContactBar() {
-	$("#contactbar").load("menus/contacts.html");
+	observer.observe(document.getElementById("content"), { childList: true });
 }
 
 function loadMarkdown(href) {
+	if (!href.endsWith(".md")) return;
+
 	$.get(href, function(markdown_text) {
-		const renderer = new marked.Renderer();
-		const original_renderer = renderer.text;
-		renderer.text = function(text) {
-			return original_renderer.call(this, text.replace(':arrow_up:', '⬆️'));
+		const renderer = {
+			link(href, title, text) {
+				const link = marked.Renderer.prototype.link.call(this, href, title, text);
+				return link.replace("<a","<a target='_blank' rel='noreferrer' ");
+			}
 		};
 
-		marked.setOptions({ renderer });
+		marked.use({ renderer });
 
 		let parsed = marked.parse(markdown_text);
+		$("#content").html(parsed);
 
-		$("#pagearea").html(parsed);
+		previousContent = href;
 	});
 }
 
-function handleTitleClicks() {
-	$("#title").click(function() {
-		saveHref(null);
-
-		$("#pagearea").html("");
-	}).hover(function() {
-		$(this).css('cursor', 'pointer');
-	}, function() {
-		$(this).css('cursor', 'auto');
-	});
-}
-
-function handleLinkClicks() {
-	$(document).on("click", "a", function(event) {
+function handleNavbarMenuLinks(popup) {
+	$(popup).on("click", "a", function(event) {
 		let href = this.href;
-
-		if (href.match(/#.*$/)) {
-			return;
-		}
-
-		if (!href.startsWith(window.location.origin)) {
-			window.open(href, '_blank');
-
-			return false;
-		}
-
 		event.preventDefault();
 		
-		saveHref(href);
-		openHref(href);
+		if (href === previousContent) return;
+
+		previousContent = href;
+		loadMarkdown(href);
+
+		document.getElementById("page-container").scrollTop = 0;
 	});
 }
 
-function onDocumentReady() {
-	loadNavbar();
-	loadContactBar();
+function handleNavItems() {
+	$(document).on("click", ".navbar-item", function(event) {
+		let href = this.href;
+		event.preventDefault();
 
-	handleTitleClicks();
-	handleLinkClicks();
+		if ($(this).hasClass("navbar-menu-link")) {
+			let popup = document.createElement("div");
+			popup.id = "navbar-menu";
 
-	loadPreviousHref();
+			document.body.appendChild(popup);
+			$(popup).load(href, handleNavbarMenuLinks(popup));
+
+			document.addEventListener("click", function removePopup(event) {
+				if (popup.contains(event.target) && event.target.tagName !== "A") return;
+
+				document.body.removeChild(popup);
+				document.removeEventListener("click", removePopup);
+			});
+		};
+	});
 }
 
-$(document).ready(onDocumentReady);
+function handleHeadClicks() {
+	$("#head").click(function() {
+		clearContent();
+	}).hover(function() {
+		$(this).css("cursor", "pointer");
+	}, function() {
+		$(this).css("cursor", "auto");
+	});
+}
+
+$(document).ready(function() {
+
+	handleHeadClicks();
+	handleNavItems();
+	setupControlButton();
+	handleControlButton();
+
+});

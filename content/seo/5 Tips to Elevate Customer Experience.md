@@ -1,4 +1,4 @@
-# 5 Tips to Elevate Customer Experience with Personalized Recommendations <a id="top"></a>
+# 5 Tips to Elevate Customer Experience with Personalized Recommendations
 
 > Written for [Tandym](https://www.bytandym.com/articles) (on behalf of [Hawke Media](https://hawkemedia.com/))
 > <br> Unpublished
@@ -51,7 +51,7 @@ If you're looking to take your personalization strategy to the next level, get i
 
 ---
 
-Sources <a id="sources"></a>
+Sources
 
 McKinsey & Company - [Improving The Management Of Complex Business Partnerships](https://www.mckinsey.com/capabilities/strategy-and-corporate-finance/our-insights/improving-the-management-of-complex-business-partnerships)
 
@@ -60,5 +60,3 @@ Salespanel - [Using Data Stitching To Align Sales, Marketing, and Analytics](htt
 Harvard Business Review - [How Machine Learning Can Improve The Customer Experience](https://hbr.org/2023/03/how-machine-learning-can-improve-the-customer-experience)
 
 Freshworks - [What Makes Customer Empowerment The Ultimate Strategy For Brand Growth?](https://www.freshworks.com/freshdesk/general/customer-empowerment-blog/)
-
-[:arrow_up:](#top)

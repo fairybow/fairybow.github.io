@@ -1,4 +1,4 @@
-# Lindsey Then <a id="top"></a>
+# Lindsey Then
 
 > *Delmarva Review, vol. 10*
 > <br> Published October 11, 2017
@@ -72,5 +72,3 @@ So but the houses got smaller, and it was a lot darker, and we were getting tire
 <p align="center">*</p>
 
 So like I’ll tell you I really remember saying goodbye, and you always say forever, forgetting about cancer and general death or whatever, or at least I do, because I’m not realistic, and none of it ever seems to make much sense at the time, or after it, and I figured we’d pass back by that gas station. And wasn’t it all just beginning? And I wondered if it’d be open tomorrow, like with church or whatever, and I thought I might just go then and sit down for a little while with a soda in a glass bottle, just by myself, to watch people go out and come in, and think about all of them, and just with Lindsey then like laser focused on the road home and bed and ahead of us, I was growing real quickly curious about the dust and muck and bobby pins and crumbs that’d collected since forever in the sun faded plastic and pleather center console between us, and she would drop me off, I thought, and we’d kiss bye, and for sure do it all again later, but Lindsey lives in Arizona now, and now she’s got a baby, and he really is the most gorgeous kid.
-
-[:arrow_up:](#top)

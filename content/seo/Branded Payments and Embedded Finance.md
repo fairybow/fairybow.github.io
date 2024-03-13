@@ -1,4 +1,4 @@
-# Branded Payments and Embedded Finance: What Do You Need To Know? <a id="top"></a>
+# Branded Payments and Embedded Finance: What Do You Need To Know?
 
 > Written for [Tandym](https://www.bytandym.com/articles) (on behalf of [Hawke Media](https://hawkemedia.com/))
 > <br> Unpublished
@@ -73,7 +73,7 @@ Check out our [blog](https://www.bytandym.com/articles) to learn more insights f
 
 ---
 
-Sources <a id="sources"></a>
+Sources
 
 The Brookings Institution - [How Digital Transformation Is Driving Economic Change](https://www.brookings.edu/articles/how-digital-transformation-is-driving-economic-change/)
 
@@ -82,5 +82,3 @@ Forbes - [Why E-Commerce Is Becoming More Like Uber](https://www.forbes.com/site
 BBVA - [What Is Embedded Finance And How Is It Revolutionizing Financial Services?](https://www.bbva.com/en/what-is-embedded-finance-and-how-is-it-revolutionizing-financial-services/)
 
 IBM - [What Is Risk Management?](https://www.ibm.com/topics/risk-management)
-
-[:arrow_up:](#top)
