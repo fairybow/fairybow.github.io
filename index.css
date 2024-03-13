@@ -195,10 +195,10 @@ hr {
 
 	border-radius: 5px;
 	display: block;
-	height: 30%; /* use js */
+	height: 200px; /* use js */
 	overflow: auto;
 	position: fixed;
-	width: 40%; /* use js */
+	width: 250px; /* use js */
 	z-index: 100;
 }
 
@@ -238,7 +238,6 @@ hr {
 	top: var(--layoutNavMenuOffset);
 
 	bottom: auto;
-	text-align: left;
 }
 
 .navbar-item {
@@ -280,7 +279,6 @@ hr {
 		bottom: calc(var(--layoutNavSizeMobile) + var(--layoutNavMenuOffset));
 		right: var(--layoutNavMenuOffset);
 
-		text-align: right;
 		top: auto;
 	}
 }
