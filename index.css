@@ -47,7 +47,7 @@
 	--elementBoxShadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 
 	--layoutPagePadding: 3em;
-	--layoutNavMenuPadding: 0 2em 0 2em;
+	--layoutNavMenuPadding: 0 1em 0 1em;
 	--layoutNavItemBorderSize: 0px;
 	--layoutNavItemPopOffset: 0px;
 	--layoutNavItemBorderColor: var(--textColor);
@@ -59,6 +59,8 @@
 	--layoutNavItemMargin: 15px;
 	--layoutNavItemGutter: 30px;
 	--layoutNavItemSize: 66px;
+
+	--layoutHeadInitialPadding: 25vh;
 }
 
 /* Absolutes */
@@ -119,6 +121,10 @@ hr {
 	border: 1px solid var(--hrColor);
 }
 
+ol, ul {
+	padding-left: 2em;
+}
+
 #main-container {
 	display: flex;
 	height: 100vh;
@@ -126,7 +132,7 @@ hr {
 }
 
 #page-container {
-	padding: 0 var(--layoutPagePadding) var(--layoutPagePadding) var(--layoutPagePadding);
+	padding: 0 var(--layoutPagePadding) calc(var(--layoutPagePadding) / 2) var(--layoutPagePadding);
 
 	display: flex;
 	flex-direction: column;
@@ -139,6 +145,12 @@ hr {
 	color: var(--textColorHead);
 	font-family: var(--fontHead);
 	font-size: var(--fontSizeHead);
+	padding-top: var(--layoutHeadInitialPadding);
+
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	text-align: center;
 }
 
 	#head a {
@@ -157,7 +169,11 @@ hr {
 	font-family: var(--fontContent);
 	font-size: var(--fontSizeContent);
 
-	flex-grow: 1;
+	flex-grow: 0;
+}
+
+#head, #content {
+	transition: padding-top 0.5s ease-out, flex-grow 0.5s ease-out;
 }
 
 #foot {

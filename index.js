@@ -5,6 +5,24 @@ function clearContent() {
 	previousContent = null;
 }
 
+function setupContentTransition() {
+	let head = $("#head");
+	let headInitialPadding = $("html").css('--layoutHeadInitialPadding');
+	let content = $("#content");
+
+	let observer = new MutationObserver(function() {
+		if (content.html() === "") {
+			head.css("padding-top", headInitialPadding);
+			content.css("flex-grow", 0);
+		} else {
+			head.css("padding-top", 0);
+			content.css("flex-grow", 1);
+		}
+	});
+
+	observer.observe(content[0], { childList: true });
+}
+
 function handleControlButton() {
 	let button = document.getElementById("navbar-control");
 	let scrollDiv = $("#page-container");
@@ -23,9 +41,10 @@ function handleControlButton() {
 }
 
 function setupControlButton() {
+	let content = $("#content");
 	let button = document.getElementById("navbar-control");
 	let observer = new MutationObserver(function() {
-		button.style.display = ($("#content").html() !== "")
+		button.style.display = (content.html() !== "")
 			? "flex"
 			: "none";
 	});
@@ -33,7 +52,7 @@ function setupControlButton() {
 	button.textContent = "close";
 	button.style.display = "none";
 
-	observer.observe(document.getElementById("content"), { childList: true });
+	observer.observe(content[0], { childList: true });
 }
 
 function loadMarkdown(href) {
@@ -108,5 +127,5 @@ $(document).ready(function() {
 	handleNavItems();
 	setupControlButton();
 	handleControlButton();
-
+	setupContentTransition();
 });
