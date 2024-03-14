@@ -1,22 +1,34 @@
-var previousContent;
+var previousContent = localStorage.getItem("previousContent");
+
+function storePreviousContent(href) {
+	previousContent = href;
+	localStorage.setItem("previousContent", href);
+}
 
 function clearContent() {
 	$("#content").html("");
+
 	previousContent = null;
+	localStorage.removeItem("previousContent");
 }
 
 function setupContentTransition() {
 	let head = $("#head");
-	let headInitialPadding = $("html").css('--layoutHeadInitialPadding');
+	let headInitialPadding = $("html").css("--layoutHeadInitialPadding");
+	let headContentPadding = $("html").css("--layoutHeadContentPadding");
+	let contentBottomPadding = $("html").css("--layoutContentBottomPadding");
 	let content = $("#content");
 
 	let observer = new MutationObserver(function() {
 		if (content.html() === "") {
 			head.css("padding-top", headInitialPadding);
 			content.css("flex-grow", 0);
+			content.css("padding-bottom", 0);
+
 		} else {
-			head.css("padding-top", 0);
+			head.css("padding-top", headContentPadding);
 			content.css("flex-grow", 1);
+			content.css("padding-bottom", contentBottomPadding);
 		}
 	});
 
@@ -32,7 +44,7 @@ function handleControlButton() {
 			? button.textContent = "arrow_upward"
 			: button.textContent = "close";
 	});
-	
+
 	button.onclick = function() {
 		(button.textContent === "close")
 			? clearContent()
@@ -70,8 +82,6 @@ function loadMarkdown(href) {
 
 		let parsed = marked.parse(markdown_text);
 		$("#content").html(parsed);
-
-		previousContent = href;
 	});
 }
 
@@ -82,7 +92,7 @@ function handleNavbarMenuLinks(popup) {
 		
 		if (href === previousContent) return;
 
-		previousContent = href;
+		storePreviousContent(href);
 		loadMarkdown(href);
 
 		document.getElementById("page-container").scrollTop = 0;
@@ -123,9 +133,16 @@ function handleHeadClicks() {
 
 $(document).ready(function() {
 
+	$("#contacts").load("html/contacts.html");
+
 	handleHeadClicks();
 	handleNavItems();
 	setupControlButton();
 	handleControlButton();
 	setupContentTransition();
+
+	if (previousContent) {
+		loadMarkdown(previousContent);
+	}
+
 });

@@ -5,10 +5,11 @@
 :root {
 	--fontTitle: Playfair Display, serif;
 	--fontParagraph: Source Sans Pro, sans-serif;
-	--fontSizeParagraph: 12pt;
-	--backgroundColor: #363636;
-	--textColor: #f1d6be;
-	--accentColor: #a08a7e;
+	--fontSizeParagraph: 14pt;
+	--backgroundColor: #dddddf;
+	--textColor: #373945;
+	--accentColor: #c2c3ca;
+	--accentColor2: #397cf0;
 
 	--fontHeaders: var(--fontTitle);
 	--fontHead: var(--fontParagraph);
@@ -26,10 +27,10 @@
 	--hrColor: var(--accentColor);
 	--blockQuoteAccent: var(--accentColor);
 
-	--linkColor: var(--accentColor);
+	--linkColor: var(--accentColor2);
 	--linkHoverColor: var(--textColor);
-	--linkColorNavItem: var(--accentColor);
-	--linkHoverNavItem: var(--textColor);
+	--linkColorNavItem: var(--linkColor);
+	--linkHoverNavItem: var(--linkHoverColor);
 	--headersColor: var(--textColor);
 	--textColorHead: var(--textColor);
 	--textColorContent: var(--textColor);
@@ -46,13 +47,16 @@
 
 	--elementBoxShadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 
-	--layoutPagePadding: 3em;
+	--layoutPageBorderSize: 0px;
+	--layoutPageBorderColor: var(--accentColor);
+	--layoutPagePadding: 2.5em;
 	--layoutNavMenuPadding: 0 1em 0 1em;
+	--layoutNavMenuBorderSize: 0px;
+	--layoutNavMenuBorderColor: var(--accentColor);
 	--layoutNavItemBorderSize: 0px;
 	--layoutNavItemPopOffset: 0px;
 	--layoutNavItemBorderColor: var(--textColor);
 	--layoutNavItemPopColor: var(--accentColor);
-	--layoutNavMenuBorderColor: var(--accentColor);
 	--layoutNavSize: 100px;
 	--layoutNavSizeMobile: 66px;
 	--layoutNavMenuOffset: 20px;
@@ -61,6 +65,8 @@
 	--layoutNavItemSize: 66px;
 
 	--layoutHeadInitialPadding: 25vh;
+	--layoutHeadContentPadding: 2em;
+	--layoutContentBottomPadding: 1.25em;
 }
 
 /* Absolutes */
@@ -69,6 +75,31 @@
 	box-sizing: border-box;
 	padding: 0;
 }
+
+/* test - seems like this causes extra space/padding to appear on reload */
+
+/*::-webkit-scrollbar {
+	width: 9px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--accentColor);
+	border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--accentColor2);
+}
+
+::-webkit-scrollbar-thumb:active {
+	background: var(--textColor);
+}*/
+
+/* end test */
 
 html, body {
 	background-color: var(--backgroundColorBody);
@@ -80,7 +111,6 @@ html, body {
 a, a:visited {
 	color: var(--linkColor);
 
-	font-weight: 700;
 	text-decoration: underline;
 }
 
@@ -90,6 +120,8 @@ a, a:visited {
 
 	a.navbar-item, a.navbar-item:visited {
 		color: var(--linkColorNavItem);
+
+		font-weight: bold;
 		text-decoration: none;
 	}
 
@@ -132,7 +164,8 @@ ol, ul {
 }
 
 #page-container {
-	padding: 0 var(--layoutPagePadding) calc(var(--layoutPagePadding) / 2) var(--layoutPagePadding);
+	border: var(--layoutPageBorderSize) solid var(--layoutPageBorderColor);
+	padding: 0 var(--layoutPagePadding) var(--layoutPagePadding) var(--layoutPagePadding);
 
 	display: flex;
 	flex-direction: column;
@@ -163,6 +196,10 @@ ol, ul {
 		vertical-align: middle;
 	}
 
+.no-wrap {
+	white-space: nowrap;
+}
+
 #content {
 	background-color: var(--backgroundColorContent);
 	color: var(--textColorContent);
@@ -173,7 +210,9 @@ ol, ul {
 }
 
 #head, #content {
-	transition: padding-top 0.5s ease-out, flex-grow 0.5s ease-out;
+	transition:
+	padding-top 0.5s ease-out,
+	flex-grow 0.5s ease-out;
 }
 
 #foot {
@@ -202,7 +241,7 @@ ol, ul {
 
 #navbar-menu {
 	background-color: var(--backgroundColorNavMenu);
-	border: 1px solid var(--layoutNavMenuBorderColor);
+	border: var(--layoutNavMenuBorderSize) solid var(--layoutNavMenuBorderColor);
 	box-shadow: var(--elementBoxShadow);
 	color: var(--textColorNavMenu);
 	font-family: var(--fontNavMenu);
