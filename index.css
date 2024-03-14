@@ -45,7 +45,7 @@
 	--backgroundColorNav: var(--backgroundColor);
 	--backgroundColorNavMenu: var(--backgroundColor);
 
-	--elementBoxShadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+	--elementBoxShadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.6);
 
 	--layoutPageBorderSize: 0px;
 	--layoutPageBorderColor: var(--accentColor);
@@ -66,7 +66,7 @@
 
 	--layoutHeadInitialPadding: 25vh;
 	--layoutHeadContentPadding: 2em;
-	--layoutContentBottomPadding: 1.25em;
+	--layoutContentBottomPadding: 1.4em;
 }
 
 /* Absolutes */
@@ -210,9 +210,7 @@ ol, ul {
 }
 
 #head, #content {
-	transition:
-	padding-top 0.5s ease-out,
-	flex-grow 0.5s ease-out;
+	transition: padding-top 0.5s ease-out, flex-grow 0.5s ease-out;
 }
 
 #foot {
@@ -225,6 +223,7 @@ ol, ul {
 	display: flex;
 	justify-content: center;
 	text-align: center;
+	white-space: nowrap;
 }
 
 #navbar {
@@ -253,7 +252,7 @@ ol, ul {
 	height: 200px; /* use js */
 	overflow: auto;
 	position: fixed;
-	width: 250px; /* use js */
+	width: 300px; /* use js */
 	z-index: 100;
 }
 
@@ -266,6 +265,7 @@ ol, ul {
 	align-items: center;
 	display: flex;
 	justify-content: center;
+	text-transform: lowercase;
 }
 
 /* Desktop */
