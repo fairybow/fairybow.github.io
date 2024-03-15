@@ -67,6 +67,19 @@ function setupControlButton() {
 	observer.observe(content[0], { childList: true });
 }
 
+function animateContent() {
+	let content = document.querySelector("#content");
+	content.innerHTML = content.innerHTML.replace(/(^|\n)(.+)/g, "<span class='anime-line'>$2</span>");
+
+	anime.timeline({loop: false})
+		.add({
+			targets: '.anime-line',
+			opacity: [ 0, 1 ],
+			duration: 500,
+			delay: (el, i) => 25 * i
+		});
+}
+
 function loadMarkdown(href) {
 	if (!href.endsWith(".md")) return;
 
@@ -79,9 +92,10 @@ function loadMarkdown(href) {
 		};
 
 		marked.use({ renderer });
-
 		let parsed = marked.parse(markdown_text);
 		$("#content").html(parsed);
+
+		animateContent();
 	});
 }
 
@@ -132,7 +146,6 @@ function handleHeadClicks() {
 }
 
 $(document).ready(function() {
-
 	$("#contacts").load("html/contacts.html");
 
 	handleHeadClicks();
@@ -144,5 +157,4 @@ $(document).ready(function() {
 	if (previousContent) {
 		loadMarkdown(previousContent);
 	}
-
 });
