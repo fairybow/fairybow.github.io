@@ -105,6 +105,9 @@
 
 html, body {
 	background-color: var(--backgroundColorBody);
+	/*background-image: url(assets/test-wallpaper.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;*/
 
 	margin: 0;
 	word-wrap: break-word;
@@ -176,7 +179,7 @@ ol, ul {
 }
 
 #head {
-	background-color: var(--backgroundColorHead);
+	/*background-color: var(--backgroundColorHead);*/
 	color: var(--textColorHead);
 	font-family: var(--fontHead);
 	font-size: var(--fontSizeHead);
@@ -204,7 +207,7 @@ ol, ul {
 }
 
 #content {
-	background-color: var(--backgroundColorContent);
+	/*background-color: var(--backgroundColorContent);*/
 	color: var(--textColorContent);
 	font-family: var(--fontContent);
 	font-size: var(--fontSizeContent);
@@ -214,7 +217,7 @@ ol, ul {
 }
 
 #foot {
-	background-color: var(--backgroundColorFoot);
+	/*background-color: var(--backgroundColorFoot);*/
 	color: var(--textColorFoot);
 	font-family: var(--fontFoot);
 	font-size: var(--fontSizeFoot);
@@ -226,8 +229,12 @@ ol, ul {
 	white-space: nowrap;
 }
 
+#head, #foot {
+	user-select: none;
+}
+
 #navbar {
-	background-color: var(--backgroundColorNav);
+	/*background-color: var(--backgroundColorNav);*/
 	box-shadow: var(--elementBoxShadow);
 	color: var(--textColorNav);
 	font-family: var(--fontNav);

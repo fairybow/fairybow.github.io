@@ -67,13 +67,13 @@ function setupControlButton() {
 	observer.observe(content[0], { childList: true });
 }
 
-function animateContent() {
-	let content = document.querySelector("#content");
-	content.innerHTML = content.innerHTML.replace(/(^|\n)(.+)/g, "<span class='anime-line'>$2</span>");
+function animateContentAdd(html) {
+	// Typed for h1 and anime.js for rest.
+	$("#content").html(html.replace(/(^|\n)(.+)/g, "<span class='animejs-line'>$2</span>"));
 
 	anime.timeline({loop: false})
 		.add({
-			targets: '.anime-line',
+			targets: '.animejs-line',
 			opacity: [ 0, 1 ],
 			duration: 500,
 			delay: (el, i) => 25 * i
@@ -93,9 +93,8 @@ function loadMarkdown(href) {
 
 		marked.use({ renderer });
 		let parsed = marked.parse(markdown_text);
-		$("#content").html(parsed);
 
-		animateContent();
+		animateContentAdd(parsed);
 	});
 }
 
