@@ -7,50 +7,37 @@
 	<title>Portfolio</title>
 	
 	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-	<link href="index.css" rel="stylesheet" />
+	<link href="styles/style.css" rel="stylesheet" />
 
-	<script src="external/anime.min.js"></script>
-	<script src="external/jquery.min.js"></script>
-	<script src="external/marked.min.js"></script>
-
-	<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-	<script src="https://unpkg.com/@popperjs/core@2"></script>
-	<script src="https://unpkg.com/tippy.js@6"></script>
+	<!--<script src="scripts/anime.min.js"></script>
+	<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>-->
+	<script src="scripts/jquery.min.js"></script>
+	<script src="scripts/marked.min.js"></script>
 </head>
 
 <body>
-	<div class="container" id="main-container">
-		<div class="container" id="page-container">
-			<div id="head">
-				<h1>
-					<span class="no-wrap">
-						I&rsquo;m Jackson (
-						<span id="contacts"></span>
-						).
-					</span>
-					<br>
-					<span class="no-wrap">
-						This is my&nbsp;<q>portfolio.</q>
-					</span>
-				</h1>
-			</div>
-
+	<main>
+		<header>
+			<h1>
+				I&rsquo;m Jackson.<br>
+				This is my &ldquo;portfolio.&rdquo;<br>
+				<div id="contacts"></div>
+			</h1>
+		</header>
+		<footer>
+			(Under construction.)
+		</footer>
+		<div id="flyout" class="acrylic">
 			<div id="content"></div>
-
-			<div id="foot">
-				<a target="_blank" rel="noreferrer" href="https://github.com/fairybow">@fairybow</a>&nbsp;2024&ensp;&bull;&ensp;
-				<a target="_blank" rel="noreferrer" href="https://github.com/fairybow/fairybow.github.io">&lt;/&gt;</a>&nbsp;by me
+			<div id="controls">
+				<a href="#" id="a11y-font-toggle" class="material-icons">visibility</a>
+				<a href="#" id="scroll-top" class="material-icons">arrow_upward</a>
+				<a href="#" id="back" class="material-icons">arrow_back</a>
+				<a href="#" id="close-flyout" class="material-icons">close</a>
 			</div>
 		</div>
+	</main>
 
-		<div id="navbar">
-			<a href="html/seo.html" class="navbar-item navbar-menu-link">SEO</a>
-			<a href="html/fiction.html" class="navbar-item navbar-menu-link">Fiction</a>
-			<a href="#" class="navbar-item material-icons" id="navbar-control"></a>
-		</div>
-	</div>
-
-	<script src="index.js"></script>
+	<script src="scripts/index.js"></script>
 </body>
-
 </html>
