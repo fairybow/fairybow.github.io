@@ -95,7 +95,7 @@ main footer {
   display: flex;
   flex-direction: column;
   font-family: "Aleo", serif;
-  font-size: 1.2em;
+  font-size: 1em;
   height: 100%;
   overflow-y: auto;
 }
