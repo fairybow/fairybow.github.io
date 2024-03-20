@@ -1,8 +1,8 @@
 $bgUrl: "../assets/USGS-1.jpg";
-$font1: "Source Sans Pro", sans-serif;
+$font1: "Source Sans 3", sans-serif;
 $font2: "Aleo", serif;
 $fontA11y: "Open Dyslexic", serif;
-$fontSize1: 1em;
+$fontSize1: 12pt; // use vw/vh + min-/max-font sizes
 $fontSize2: 1.2em;
 $fontSize3: 1em;
 $fontSizeIcons: 2em;
@@ -13,9 +13,9 @@ $flyoutControlsHeight: 80px;
 $textColor1: #dde1ec;
 $linkColor1: #a3a3a3;
 $linkColor2: #ffffff;
-$paddingContent: 10%;
-$paddingMenu: 5%;
-$paddingMainMenu: 100%;
+$paddingContent: 10vw;
+$paddingMenu: 2vh;
+$paddingMainMenu: 5vh;
 
 /*@mixin desktop {
 	@media only screen and (min-width: ($mobileWidth + 1px)) {
@@ -146,9 +146,8 @@ main {
 		@include bodyLinks;
 		font-family: $font2;
 		font-size: $fontSize2;
-		height: calc(100% - #{$flyoutControlsHeight});
+		height: 100%;
 		overflow-y: auto;
-		padding: $paddingContent;
 
 		blockquote {
 			margin: -0.5em 0;
@@ -191,8 +190,7 @@ main {
 		@include textShadow;
 		bottom: 0;
 		display: none;
-		flex-shrink: 0;
-		height: $flyoutControlsHeight;
+		//height: 0%;
 		position: fixed;
 		width: 100%;
 
@@ -217,8 +215,14 @@ main {
 	&.open {
 		width: 100%;
 
+		#content {
+			height: calc(100% - #{$flyoutControlsHeight});
+			padding: $paddingContent;
+		}
+
 		#controls {
 			@include flexRowAlign;
+			height: $flyoutControlsHeight;
 		}
 	}
 
@@ -240,9 +244,8 @@ main {
 	.main-menu {
 		a {
 			padding-bottom: calc(#{$paddingMainMenu} / 2);
-			padding-left: 15%;
-			padding-right: 15%;
 			padding-top: calc(#{$paddingMainMenu} / 2);
+			width: 100%;
 		}
 	}
 }
