@@ -2,7 +2,7 @@
 
 [&lt;/&gt;](https://github.com/fairybow/fairybow.github.io) by me, using [VSCode](https://code.visualstudio.com/), HTML, Javascript (with [jQuery](https://jquery.com/)), and CSS.
 
-The CSS made tolerable (even fun?) with [Sass](https://sass-lang.com/).
+The CSS was made tolerable (even fun?) thanks to [Sass](https://sass-lang.com/).
 
 ## I've also used:
 
