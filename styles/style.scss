@@ -1,10 +1,12 @@
 $bgUrl: "../assets/USGS-1.jpg";
 $font1: "Source Sans 3", sans-serif;
-$font2: "Aleo", serif;
+$font2: $font1;
+$font3: "Aleo", serif;
 $fontA11y: "Open Dyslexic", serif;
-$fontSize1: 12pt; // use vw/vh + min-/max-font sizes
+$fontSize1: 14pt; // use vw/vh + min-/max-font sizes
 $fontSize2: 1em;
 $fontSize3: 1em;
+$fontSize4: 0.9em;
 $fontSizeIcons: 2em;
 $flyoutClosedSize: 20%;
 $flyoutInterval: 0.5s;
@@ -14,8 +16,9 @@ $textColor1: #dde1ec;
 $linkColor1: #a3a3a3;
 $linkColor2: #ffffff;
 $paddingContent: 10vw;
+$paddingControls: 5vw;
 $paddingMenu: 2vh;
-$paddingMainMenu: 5vh;
+$paddingMainMenu: 6vh;
 
 /*@mixin desktop {
 	@media only screen and (min-width: ($mobileWidth + 1px)) {
@@ -62,6 +65,11 @@ $paddingMainMenu: 5vh;
 	justify-content: $y;
 }
 
+@mixin fontMenus {
+	font-family: $font2;
+	font-size: $fontSize2;
+}
+
 @mixin gradientBackgroundImage($url, $vendor: "", $color1: transparent, $color2: black) {
 	background: #{$vendor}linear-gradient($color1 0%, $color2 100%), url($url) no-repeat center center fixed;
 }
@@ -96,6 +104,9 @@ body {
 main {
 	@include bodyLinks;
 	@include flexColumn;
+	color: $textColor1;
+	font-family: $font1;
+	font-size: $fontSize1;
 	height: 100vh;
 	padding-left: $paddingContent;
 	padding-right: calc(#{$flyoutClosedSize} * 1.1);
@@ -107,25 +118,21 @@ main {
 		@include menuLinks;
 		@include flexColumnAlign(left, flex-end);
 		@include textShadow;
-		color: $textColor1;
-		font-family: $font1;
-		font-size: $fontSize1;
-		height: 50%;
+		height: 57%;
 		padding-bottom: 5px;
+	}
 
-		svg {
-			height: 1em;
-			padding: 0 0 0.1em 0;
-			vertical-align: middle;
-		}
+	svg {
+		height: 1em;
+		padding: 0 0 0.1em 0;
+		vertical-align: middle;
 	}
 
 	footer {
 		@include flexColumnAlign(left, flex-start);
 		bottom: 0;
 		color: $textColor1;
-		font-family: $font1;
-		font-size: $fontSize3;
+		font-size: $fontSize4;
 		flex-grow: 1;
 		padding-top: 5px;
 	}
@@ -144,8 +151,8 @@ main {
 	#content {
 		@include flexColumn;
 		@include bodyLinks;
-		font-family: $font2;
-		font-size: $fontSize2;
+		font-family: $font3;
+		font-size: $fontSize3;
 		height: 100%;
 		overflow-y: auto;
 
@@ -165,7 +172,6 @@ main {
 		}
 
 		h1, h2, h3, h4, h5, h6 {
-			font-family: $font2;
 			padding-bottom: 0.5em;
 			padding-top: 0.75em;
 		}
@@ -195,8 +201,8 @@ main {
 		width: 100%;
 
 		a {
-			padding-left: $paddingMenu;
-			padding-right: $paddingMenu;
+			padding-left: $paddingControls;
+			padding-right: $paddingControls;
 		}
 
 		#back {
@@ -221,17 +227,18 @@ main {
 		}
 
 		#controls {
-			@include flexRowAlign;
+			@include flexRowAlign(flex-end);
 			height: $flyoutControlsHeight;
+			padding-right: $paddingContent;
 		}
 	}
 
 	.menu {
+		@include fontMenus;
 		@include menuLinks;
 		@include flexColumnAlign;
 		@include textShadow;
 		flex-grow: 1;
-		font-family: $font1;
 		line-height: 1em;
 		text-align: center;
 
@@ -242,6 +249,8 @@ main {
 	}
 
 	.main-menu {
+		@include fontMenus;
+
 		a {
 			padding-bottom: calc(#{$paddingMainMenu} / 2);
 			padding-top: calc(#{$paddingMainMenu} / 2);

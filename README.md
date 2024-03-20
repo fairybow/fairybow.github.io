@@ -6,16 +6,16 @@ The CSS made tolerable (even fun?) with [Sass](https://sass-lang.com/).
 
 ## I've also used:
 
-### Libraries:
+### Libraries
 - [Marked](https://marked.js.org/) javascript library, for parsing and loading markdown;
 
-### Fonts:
+### Fonts
 - &ldquo;Aleo&rdquo; by [Alessio Laiso](https://alessiolaiso.com/) (via [Google Fonts](https://fonts.google.com/));
 - &ldquo;[OpenDyslexic](https://opendyslexic.org/)&rdquo; by [Abbie Gonzalez](https://www.patreon.com/opendyslexic);
 - &ldquo;Source Sans 3&rdquo; by Paul D. Hunt (via [Google Fonts](https://fonts.google.com/));
 - [Material Symbols and Icons](https://fonts.google.com/icons) by Google;
 
-### Assets:
+### Assets
 - GitHub & LinkedIn icons by [Simple Icons](https://simpleicons.org/) (warning: load time!);
 - and &ldquo;A red, blue and green fluid painting on a black background&rdquo; by the United States Geological Survey (via [Unsplash](https://unsplash.com/photos/a-red-blue-and-green-fluid-painting-on-a-black-background-hoS3dzgpHzw)).
 
