@@ -1,10 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
-@import url("https://fonts.googleapis.com/css?family=Aleo");
-@import url("https://fonts.googleapis.com/css?family=Material+Icons");
-@font-face {
-  font-family: "Open Dyslexic";
-  src: url("../assets/OpenDyslexic.otf") format("opentype");
-}
 /*@mixin desktop {
 	@media only screen and (min-width: ($mobileWidth + 1px)) {
 		@content;
@@ -23,7 +16,8 @@
 }
 
 body {
-  background: url("../assets/Abstract by USGS.jpg") no-repeat center center fixed;
+  background: linear-gradient(transparent 0%, black 100%), url("../assets/USGS-1.jpg") no-repeat center center fixed;
+  background: -ms-linear-gradient(transparent 0%, black 100%), url("../assets/USGS-1.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -136,6 +130,7 @@ main footer {
   border: 1px solid #a3a3a3;
 }
 #flyout #content ol, #flyout #content ul {
+  line-height: 2em;
   padding-left: 2em;
 }
 #flyout #content p {
@@ -211,6 +206,8 @@ main footer {
 }
 #flyout .main-menu a {
   padding-bottom: calc(100% / 2);
+  padding-left: 15%;
+  padding-right: 15%;
   padding-top: calc(100% / 2);
 }
 
@@ -221,6 +218,6 @@ main footer {
 .acrylic {
   -webkit-backdrop-filter: blur(15px) saturate(180%);
           backdrop-filter: blur(15px) saturate(180%);
-  background: rgba(31, 32, 40, 0.9);
+  background: rgba(31, 32, 40, 0.8);
   opacity: 1;
 }/*# sourceMappingURL=style.css.map */

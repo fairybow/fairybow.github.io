@@ -1,11 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
-@import url("https://fonts.googleapis.com/css?family=Aleo");
-@import url("https://fonts.googleapis.com/css?family=Material+Icons");
-@font-face {
-	font-family: "Open Dyslexic";
-	src: url("../assets/OpenDyslexic.otf") format("opentype");
-}
-
+$bgUrl: "../assets/USGS-1.jpg";
 $font1: "Source Sans Pro", sans-serif;
 $font2: "Aleo", serif;
 $fontA11y: "Open Dyslexic", serif;
@@ -69,6 +62,10 @@ $paddingMainMenu: 100%;
 	justify-content: $y;
 }
 
+@mixin gradientBackgroundImage($url, $vendor: "", $color1: transparent, $color2: black) {
+	background: #{$vendor}linear-gradient($color1 0%, $color2 100%), url($url) no-repeat center center fixed;
+}
+
 @mixin menuLinks {
 	@include bodyLinks;
 
@@ -88,7 +85,11 @@ $paddingMainMenu: 100%;
 }
 
 body {
-	background: url("../assets/Abstract by USGS.jpg") no-repeat center center fixed;
+	@include gradientBackgroundImage($bgUrl);
+	@include gradientBackgroundImage($bgUrl, "-webkit-");
+	@include gradientBackgroundImage($bgUrl, "-moz-");
+	@include gradientBackgroundImage($bgUrl, "-o-");
+	@include gradientBackgroundImage($bgUrl, "-ms-");
 	background-size: cover;
 }
 
@@ -175,6 +176,7 @@ main {
 		}
 
 		ol, ul {
+			line-height: 2em;
 			padding-left: 2em;
 		}
 
@@ -238,6 +240,8 @@ main {
 	.main-menu {
 		a {
 			padding-bottom: calc(#{$paddingMainMenu} / 2);
+			padding-left: 15%;
+			padding-right: 15%;
 			padding-top: calc(#{$paddingMainMenu} / 2);
 		}
 	}
@@ -250,6 +254,6 @@ main {
 
 .acrylic {
 	backdrop-filter: blur(15px) saturate(180%);
-	background: rgba(31, 32, 40, 0.9);
+	background: rgba(31, 32, 40, 0.8);
 	opacity: 1;
 }
