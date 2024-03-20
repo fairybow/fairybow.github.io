@@ -1,3 +1,7 @@
+//var cache = BoomerangCache.create("bucket", {storage: "local", encrypt: true});
+//let cacheSize = 0;
+//const MAX_CACHE_SIZE = 2000000;
+
 var hasA11y = false;
 var mainMenuPath = "content/main-menu.html";
 var previousHref = null;
@@ -149,7 +153,7 @@ function flybackEtAl() {
 	return flyout.find("*").addBack().not(".material-icons");
 }
 
-function flyoutLoad(href, isRevisit) {
+/*function flyoutLoad(href, isRevisit) {
 	if (!href) {
 		href = mainMenuPath;
 	}
@@ -165,22 +169,55 @@ function flyoutLoad(href, isRevisit) {
 		: loadMarkdown(href);
 
 	setBackControlVisibility();
+}*/
+
+/*async */function flyoutLoad(href, isRevisit) {
+	if (!href) {
+		href = mainMenuPath;
+	}
+
+	if (previousHref && !isRevisit) {
+		flyoutMRVs.push(previousHref);
+	}
+
+	previousHref = href;
+
+	//let cached = await cache.get(href);
+	let loadContent = function(x) {
+		href.endsWith(".md")
+			? loadMarkdown(x)
+			: flyoutContent.html(x);
+	}
+
+	/*if (cached) {
+		loadContent(cached);
+	} else {
+		$.get(href, function(data) {
+			loadContent(data);
+
+			cache.set(href, data);
+		});
+	}*/
+
+	$.get(href, function(data) {
+		loadContent(data);
+	});
+
+	setBackControlVisibility();
 }
 
-function loadMarkdown(href) {
-	$.get(href, function(markdown_text) {
-		const renderer = {
-			link(href, title, text) {
-				const link = marked.Renderer.prototype.link.call(this, href, title, text);
-				return link.replace("<a","<a target='_blank' rel='noreferrer' ");
-			}
-		};
+function loadMarkdown(data) {
+	const renderer = {
+		link(href, title, text) {
+			const link = marked.Renderer.prototype.link.call(this, href, title, text);
+			return link.replace("<a","<a target='_blank' rel='noreferrer' ");
+		}
+	};
 
-		marked.use({ renderer });
-		let parsed = marked.parse(markdown_text);
+	marked.use({ renderer });
+	let parsed = marked.parse(data);
 
-		flyoutContent.html(parsed);
-	});
+	flyoutContent.html(parsed);
 }
 
 function handleScrollControlVisibility() {

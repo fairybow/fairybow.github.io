@@ -118,7 +118,7 @@ main {
 		@include menuLinks;
 		@include flexColumnAlign(left, flex-end);
 		@include textShadow;
-		height: 57%;
+		height: 50%;
 		padding-bottom: 5px;
 	}
 
@@ -129,7 +129,7 @@ main {
 	}
 
 	footer {
-		@include flexColumnAlign(left, flex-start);
+		@include flexColumnAlign(start, flex-start);
 		bottom: 0;
 		color: $textColor1;
 		font-size: $fontSize4;
