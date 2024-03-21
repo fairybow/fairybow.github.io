@@ -1,6 +1,4 @@
-//var cache = BoomerangCache.create("bucket", {storage: "local", encrypt: true});
-//let cacheSize = 0;
-//const MAX_CACHE_SIZE = 2000000;
+//const MAX_CACHE_SIZE = 5 * 1024 * 1024;
 
 var hasA11y = false;
 var mainMenuPath = "content/main-menu.html";
@@ -30,7 +28,7 @@ $(document).ready(function() {
 });
 
 // untested
-window.onpopstate = function(event) {
+/*window.onpopstate = function(event) {
 	if (flyoutMRVs.length > 0) {
 		event.preventDefault();
 
@@ -38,7 +36,7 @@ window.onpopstate = function(event) {
 			? backControl.click()
 			: closeControl.click();
 	}
-};
+};*/
 
 function handleFlyoutContentLinks() {
 	flyoutContent.on("click", "a", function(event) {
@@ -145,36 +143,38 @@ function toggleA11y() {
 }
 
 function addA11y() {
-	flybackEtAl().addClass("a11y");
+	textElements().addClass("a11y");
 }
 
 function removeA11y() {
-	flybackEtAl().removeClass("a11y");
+	textElements().removeClass("a11y");
 }
 
-function flybackEtAl() {
-	return flyout.find("*").addBack().not(".material-icons");
+function textElements() {
+	return $("body").find("*").not(".material-icons").filter(function() {
+		return $(this).contents().filter(function() {
+			return this.nodeType === 3 && $.trim(this.nodeValue).length > 0;
+		}).length > 0;
+	});
 }
 
-/*function flyoutLoad(href, isRevisit) {
-	if (!href) {
-		href = mainMenuPath;
+/*via: https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript */
+/*function makeHash(string) {
+	let hash = 0, i, charCode;
+	let length = string.length;
+
+	if (length === 0) return hash;
+
+	for (i = 0; i < length; i++) {
+		charCode = string.charCodeAt(i);
+		hash = ((hash << 5) - hash) + charCode;
+		hash |= 0;
 	}
 
-	if (previousHref && !isRevisit) {
-		flyoutMRVs.push(previousHref);
-	}
-
-	previousHref = href;
-
-	!href.endsWith(".md")
-		? flyoutContent.load(href)
-		: loadMarkdown(href);
-
-	setBackControlVisibility();
+	return hash;
 }*/
 
-/*async */function flyoutLoad(href, isRevisit) {
+/*async */ function flyoutLoad(href, isRevisit) {
 	if (!href) {
 		href = mainMenuPath;
 	}
@@ -185,20 +185,31 @@ function flybackEtAl() {
 
 	previousHref = href;
 
-	//let cached = await cache.get(href);
+	//let response = await fetch(href);
+	//let data = await response.text();
+	//let hash = makeHash(data);
+	//let cache = await caches.open("page-content");
+	//let cachedResponse = await cache.match(hash);
+
 	let loadContent = function(x) {
 		href.endsWith(".md")
 			? loadMarkdown(x)
 			: flyoutContent.html(x);
 	}
 
-	/*if (cached) {
-		loadContent(cached);
+	/*if (cachedResponse) {
+		alert("cached");
+
+		let data = await cachedResponse.text();
+		loadContent(data);
 	} else {
-		$.get(href, function(data) {
+		alert("NOT cached");
+
+		$.get(href, async function(data) {
 			loadContent(data);
 
-			cache.set(href, data);
+			let response = new Response(data);
+			await cache.put(hash, response);
 		});
 	}*/
 
