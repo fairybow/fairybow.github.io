@@ -1,10 +1,17 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 /*@mixin desktop {
 	@media only screen and (min-width: ($mobileWidth + 1px)) {
 		@content;
 	}
-}
-
-@mixin mobile {
+}*/
+/*@mixin mobile {
 	@media only screen and (max-width: $mobileWidth) {
 		@content;
 	}
@@ -15,32 +22,27 @@
   padding: 0;
 }
 
-body {
+main {
   background: url("../assets/USGS-1.jpg") no-repeat center center fixed;
   background-size: cover;
-}
-
-main {
   display: flex;
   flex-direction: column;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   color: #ffffff;
   font-family: "Source Sans 3", sans-serif;
   font-size: 14pt;
-  height: 100vh;
-  padding-left: 10vw;
-  padding-right: calc(20% * 1.1);
+  height: 100%;
+  position: fixed;
   vertical-align: middle;
-  width: 100vw;
+  width: 100%;
   word-wrap: break-word;
 }
 main header {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  justify-content: flex-end;
   height: 50%;
   padding-bottom: 5px;
+  padding-left: 10vw;
+  padding-right: calc(20% * 1.1);
+  width: 100%;
 }
 main header a:link,
 main header a:visited {
@@ -51,6 +53,12 @@ main header a:visited {
 main header a:hover {
   color: #b4b4b4;
 }
+main header .main-text {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: flex-end;
+}
 main svg {
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
   height: 1em;
@@ -58,14 +66,13 @@ main svg {
   vertical-align: middle;
 }
 main footer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
   bottom: 0;
   font-size: 0.9em;
   flex-grow: 1;
+  padding-left: 10vw;
+  padding-right: calc(20% * 1.1);
   padding-top: 5px;
+  width: 100%;
 }
 main footer a:link,
 main footer a:visited {
@@ -74,6 +81,20 @@ main footer a:visited {
 }
 main footer a:hover {
   color: #b4b4b4;
+}
+main footer .main-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+main .main-text {
+  animation: fadeIn 1s;
+  height: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  width: 100%;
 }
 
 #flyout {
@@ -87,7 +108,22 @@ main footer a:hover {
   transition: width 0.5s ease-in-out;
   width: 20%;
 }
+#flyout.open {
+  width: 100%;
+}
+#flyout.open #content {
+  height: calc(100% - 80px);
+  padding: 10vw;
+}
+#flyout.open #controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 80px;
+  padding-right: 10vw;
+}
 #flyout #content {
+  animation: fadeIn 1s;
   display: flex;
   flex-direction: column;
   font-family: "Aleo", serif;
@@ -160,20 +196,6 @@ main footer a:hover {
 #flyout #controls .material-icons {
   font-size: 2em;
 }
-#flyout.open {
-  width: 100%;
-}
-#flyout.open #content {
-  height: calc(100% - 80px);
-  padding: 10vw;
-}
-#flyout.open #controls {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  height: 80px;
-  padding-right: 10vw;
-}
 #flyout .menu {
   font-family: "Source Sans 3", sans-serif;
   font-size: 1em;
@@ -214,4 +236,11 @@ main footer a:hover {
           backdrop-filter: blur(15px) saturate(180%);
   background: rgba(31, 32, 40, 0.8);
   opacity: 1;
+}
+@media only screen and (min-width: 999px), only screen and (min-height: 999px) {
+  .acrylic {
+    -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+    background: rgba(31, 32, 40, 0.95);
+  }
 }/*# sourceMappingURL=style.css.map */

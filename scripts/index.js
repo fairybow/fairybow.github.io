@@ -13,6 +13,7 @@ var backControl = $("#back");
 var scrollTopTime = 300;
 var closeControl = $("#close-flyout");
 
+var mainText = $(".main-text");
 var flyout = $("#flyout");
 var flyoutContent = $("#content");
 var flyoutTransition = flyout.css("transition");
@@ -107,6 +108,7 @@ function setupFlyoutObserver() {
 function openFlyout() {
 	flyoutContent.html("");
 	flyout.addClass("open");
+	fadeElementOut(mainText, flyoutOpenTime);
 
 	setTimeout(function() {
 		flyout.css("transition", "unset");
@@ -117,6 +119,7 @@ function closeFlyout() {
 	flyoutContent.html("");
 	flyout.css("transition", flyoutTransition);
 	flyout.removeClass("open");
+	fadeElementIn(mainText, flyoutOpenTime);
 
 	setTimeout(function() {
 		flyoutLoad();
@@ -234,4 +237,29 @@ function setBackControlVisibility() {
 	(lastPage && lastPage !== mainMenuPath)
 		? backControl.css("display", "unset")
 		: backControl.css("display", "none");
+}
+
+function fadeElementIn(target, duration) {
+	target.css("visibility", "visible");
+	target.attr("aria-hidden", "false");
+
+	anime({
+		targets: target.toArray(),
+		opacity: 1,
+		duration: duration,
+		easing: "easeInOutQuad"
+	});
+}
+
+function fadeElementOut(target, duration) {
+	anime({
+		targets: target.toArray(),
+		opacity: 0,
+		duration: duration,
+		easing: "easeInOutQuad",
+		complete: function() {
+			target.css("visibility", "hidden");
+			target.attr("aria-hidden", "true");
+		}
+	});
 }

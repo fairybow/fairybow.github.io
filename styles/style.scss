@@ -10,9 +10,10 @@ $fontSizeIcons: 2em;
 $flyoutClosedSize: 20%;
 $flyoutInterval: 0.5s;
 $flyoutControlsHeight: 80px;
-//$mobileWidth: 600px;
+//$mobileWidth: 1000px;
 $textColor1: #ffffff;
 $textColor2: #dde1ec;
+$largeScreenDimension: 999px;
 $linkColor1: #ffffff;
 $linkHoverColor1: #b4b4b4;
 $linkColor2: #a3a3a3;
@@ -22,37 +23,24 @@ $paddingControls: 5vw;
 $paddingMenu: 2vh;
 $paddingMainMenu: 6vh;
 
-/*@mixin desktop {
-	@media only screen and (min-width: ($mobileWidth + 1px)) {
-		@content;
-	}
+@keyframes fadeIn {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
 }
-
-@mixin mobile {
-	@media only screen and (max-width: $mobileWidth) {
-		@content;
-	}
-}*/
 
 @mixin backgroundImage($url) {
 	background: url($url) no-repeat center center fixed;
 	background-size: cover;
 }
 
-@mixin links($color, $hover, $underline: true) {
-	a:link,
-	a:visited {
-		color: $color;
-		transition: color 0.3s ease;
-
-		@if not $underline {
-			text-decoration: none;
-		}
+/*@mixin desktop {
+	@media only screen and (min-width: ($mobileWidth + 1px)) {
+		@content;
 	}
+}*/
 
-	a:hover {
-		color: $hover;
-	}
+@mixin fadeInAnimation($seconds: 1) {
+	animation: fadeIn #{$seconds} + "s";
 }
 
 @mixin flexRow {
@@ -81,6 +69,34 @@ $paddingMainMenu: 6vh;
 	font-size: $fontSize2;
 }
 
+@mixin largeDimension {
+	@media only screen and (min-width: $largeScreenDimension), only screen and (min-height: $largeScreenDimension) {
+		@content;
+	}
+}
+
+@mixin links($color, $hover, $underline: true) {
+	a:link,
+	a:visited {
+		color: $color;
+		transition: color 0.3s ease;
+
+		@if not $underline {
+			text-decoration: none;
+		}
+	}
+
+	a:hover {
+		color: $hover;
+	}
+}
+
+/*@mixin mobile {
+	@media only screen and (max-width: $mobileWidth) {
+		@content;
+	}
+}*/
+
 @mixin textShadow($opacity) {
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, $opacity);
 }
@@ -91,29 +107,31 @@ $paddingMainMenu: 6vh;
 	padding: 0;
 }
 
-body {
-	@include backgroundImage("../assets/USGS-1.jpg");
-}
-
 main {
-	//@include backgroundImage("../assets/gradient.png");
+	@include backgroundImage("../assets/USGS-1.jpg");
 	@include flexColumn;
 	@include textShadow(0.3);
 	color: $textColor1;
 	font-family: $font1;
 	font-size: $fontSize1;
-	height: 100vh;
-	padding-left: $paddingContent;
-	padding-right: calc(#{$flyoutClosedSize} * 1.1);
+	height: 100%;
+	position: fixed;
 	vertical-align: middle;
-	width: 100vw;
+	width: 100%;
 	word-wrap: break-word;
 
 	header {
-		@include flexColumnAlign(left, flex-end);
+		//@include backgroundImage("../assets/USGS-1.jpg");
 		@include links($linkColor1, $linkHoverColor1, false);
 		height: 50%;
 		padding-bottom: 5px;
+		padding-left: $paddingContent;
+		padding-right: calc(#{$flyoutClosedSize} * 1.1);
+		width: 100%;
+
+		.main-text {
+			@include flexColumnAlign(left, flex-end);
+		}
 	}
 
 	svg {
@@ -124,12 +142,26 @@ main {
 	}
 
 	footer {
-		@include flexColumnAlign(flex-start, flex-start);
 		@include links($linkColor1, $linkHoverColor1);
+		//background-color: #222;
 		bottom: 0;
 		font-size: $fontSize4;
 		flex-grow: 1;
+		padding-left: $paddingContent;
+		padding-right: calc(#{$flyoutClosedSize} * 1.1);
 		padding-top: 5px;
+		width: 100%;
+
+		.main-text {
+			@include flexColumnAlign(flex-start, flex-start);
+		}
+	}
+
+	.main-text {
+		@include fadeInAnimation;
+		height: 100%;
+		user-select: none;
+		width: 100%;
 	}
 }
 
@@ -143,7 +175,23 @@ main {
 	transition: width $flyoutInterval ease-in-out;
 	width: $flyoutClosedSize;
 
+	&.open {
+		width: 100%;
+
+		#content {
+			height: calc(100% - #{$flyoutControlsHeight});
+			padding: $paddingContent;
+		}
+
+		#controls {
+			@include flexRowAlign(flex-end);
+			height: $flyoutControlsHeight;
+			padding-right: $paddingContent;
+		}
+	}
+
 	#content {
+		@include fadeInAnimation;
 		@include flexColumn;
 		@include links($linkColor2, $linkHoverColor2);
 		font-family: $font3;
@@ -191,7 +239,6 @@ main {
 		@include textShadow(0.6);
 		bottom: 0;
 		display: none;
-		//height: 0%;
 		position: fixed;
 		width: 100%;
 
@@ -210,21 +257,6 @@ main {
 
 		.material-icons {
 			font-size: $fontSizeIcons;
-		}
-	}
-
-	&.open {
-		width: 100%;
-
-		#content {
-			height: calc(100% - #{$flyoutControlsHeight});
-			padding: $paddingContent;
-		}
-
-		#controls {
-			@include flexRowAlign(flex-end);
-			height: $flyoutControlsHeight;
-			padding-right: $paddingContent;
 		}
 	}
 
@@ -261,4 +293,9 @@ main {
 	backdrop-filter: blur(15px) saturate(180%);
 	background: rgba(31, 32, 40, 0.8);
 	opacity: 1;
+
+	@include largeDimension {
+		backdrop-filter: none;
+		background: rgba(31, 32, 40, 0.95);
+	}
 }
