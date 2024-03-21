@@ -1,0 +1,4 @@
+# .browserslistrc
+last 2 versions
+> 5%
+ie >= 11
