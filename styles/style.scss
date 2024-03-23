@@ -2,15 +2,15 @@ $font1: "Source Sans 3", sans-serif;
 $font2: $font1;
 $font3: "Aleo", serif;
 $fontA11y: "Open Dyslexic", serif;
-$fontSize1: 14pt; // use vw/vh + min-/max-font sizes
-$fontSize2: 1em;
-$fontSize3: 1em;
-$fontSize4: 0.9em;
-$fontSizeIcons: 2em;
-$flyoutClosedSize: 20%;
+$fontHeaderVUs: 3;
+$fontFooterVUs: 2;
+$fontMenuVUs: 2.75;
+$fontContentVUs: 2.75;
+$fontIconsVUs: 3;
+$flyoutClosedSize: 6em;
 $flyoutInterval: 0.5s;
 $flyoutControlsHeight: 80px;
-//$mobileWidth: 1000px;
+$mobileBreakpoint: 1000px;
 $textColor1: #ffffff;
 $textColor2: #dde1ec;
 $largeScreenDimension: 999px;
@@ -28,16 +28,40 @@ $paddingMainMenu: 6vh;
 	100% { opacity: 1; }
 }
 
+@mixin _portrait {
+	@media (orientation: portrait) and (max-width: (#{$mobileBreakpoint} - 1)) {
+		@content;
+	}
+}
+
+@mixin _landscape {
+	@media (orientation: landscape) and (max-width: (#{$mobileBreakpoint} - 1)) {
+		@content;
+	}
+}
+
+@mixin _desktop-wide {
+	@media (min-width: $mobileBreakpoint) {
+		@content;
+	}
+}
+
+@mixin _desktop-tall {
+	@media (min-height: $mobileBreakpoint) and (min-width: $mobileBreakpoint) {
+		@content;
+	}
+}
+
 @mixin backgroundImage($url) {
 	background: url($url) no-repeat center center fixed;
 	background-size: cover;
 }
 
-/*@mixin desktop {
-	@media only screen and (min-width: ($mobileWidth + 1px)) {
+@mixin portrait {
+	@media (orientation: portrait) {
 		@content;
 	}
-}*/
+}
 
 @mixin fadeInAnimation($seconds: 1) {
 	animation: fadeIn #{$seconds} + "s";
@@ -64,9 +88,22 @@ $paddingMainMenu: 6vh;
 	justify-content: $y;
 }
 
-@mixin fontMenus {
-	font-family: $font2;
-	font-size: $fontSize2;
+@mixin fontSize($viewport-units, $min: 16px, $max: 40px) {
+	@include _portrait{
+		font-size: max($min, min($viewport-units * 1vh, $max));
+	}
+
+	@include _landscape{
+		font-size: max($min, min($viewport-units * 1vw, $max));
+	}
+
+	@include _desktop-wide {
+		font-size: max($min, min($viewport-units * 0.5vw, $max));
+	}
+
+	@include _desktop-tall {
+		font-size: max($min, min($viewport-units * 0.5vh, $max));
+	}
 }
 
 @mixin largeDimension {
@@ -91,12 +128,6 @@ $paddingMainMenu: 6vh;
 	}
 }
 
-/*@mixin mobile {
-	@media only screen and (max-width: $mobileWidth) {
-		@content;
-	}
-}*/
-
 @mixin textShadow($opacity) {
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, $opacity);
 }
@@ -113,7 +144,6 @@ main {
 	@include textShadow(0.3);
 	color: $textColor1;
 	font-family: $font1;
-	font-size: $fontSize1;
 	height: 100%;
 	position: fixed;
 	vertical-align: middle;
@@ -122,6 +152,7 @@ main {
 
 	header {
 		//@include backgroundImage("../assets/USGS-1.jpg");
+		@include fontSize($fontHeaderVUs);
 		@include links($linkColor1, $linkHoverColor1, false);
 		height: 50%;
 		padding-bottom: 5px;
@@ -142,10 +173,10 @@ main {
 	}
 
 	footer {
+		@include fontSize($fontFooterVUs);
 		@include links($linkColor1, $linkHoverColor1);
 		//background-color: #222;
 		bottom: 0;
-		font-size: $fontSize4;
 		flex-grow: 1;
 		padding-left: $paddingContent;
 		padding-right: calc(#{$flyoutClosedSize} * 1.1);
@@ -185,17 +216,19 @@ main {
 
 		#controls {
 			@include flexRowAlign(flex-end);
+			bottom: 0;
 			height: $flyoutControlsHeight;
 			padding-right: $paddingContent;
+			width: 100%;
 		}
 	}
 
 	#content {
 		@include fadeInAnimation;
 		@include flexColumn;
+		@include fontSize($fontContentVUs);
 		@include links($linkColor2, $linkHoverColor2);
 		font-family: $font3;
-		font-size: $fontSize3;
 		height: 100%;
 		overflow-y: auto;
 
@@ -237,10 +270,8 @@ main {
 	#controls {
 		@include links($linkColor2, $linkHoverColor2, false);
 		@include textShadow(0.6);
-		bottom: 0;
 		display: none;
 		position: fixed;
-		width: 100%;
 
 		a {
 			padding-left: $paddingControls;
@@ -256,16 +287,17 @@ main {
 		}
 
 		.material-icons {
-			font-size: $fontSizeIcons;
+			@include fontSize($fontIconsVUs);
 		}
 	}
 
 	.menu {
-		@include fontMenus;
+		@include fontSize($fontMenuVUs);
 		@include links($linkColor2, $linkHoverColor2, false);
 		@include flexColumnAlign;
 		@include textShadow(0.6);
 		flex-grow: 1;
+		font-family: $font2;
 		line-height: 1em;
 		text-align: center;
 
@@ -284,18 +316,29 @@ main {
 	}
 }
 
+#Aleo {
+	font-family: $font3 !important;
+}
+
+#OpenDyslexic {
+	font-family: $fontA11y !important;
+}
+
+#Source-Sans-3 {
+	font-family: $font1 !important;
+}
+
 .a11y {
 	//color: yellow !important;
 	font-family: $fontA11y !important;
 }
 
 .acrylic {
-	backdrop-filter: blur(15px) saturate(180%);
-	background: rgba(31, 32, 40, 0.8);
-	opacity: 1;
-
 	@include largeDimension {
 		backdrop-filter: none;
 		background: rgba(31, 32, 40, 0.95);
 	}
+	backdrop-filter: blur(15px) saturate(180%);
+	background: rgba(31, 32, 40, 0.8);
+	opacity: 1;
 }
