@@ -140,6 +140,7 @@ $paddingMainMenu: 6vh;
 main {
 	@include _landscape {
 		height: 100vh;
+		position: relative;
 		width: 100vw;
 	}
 	@include backgroundImage("../assets/USGS-1.jpg");
