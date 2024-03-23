@@ -17,14 +17,6 @@ var flyoutContent = $("#content");
 var flyoutTransition = flyout.css("transition");
 var flyoutOpenTime = parseFloat(getComputedStyle(flyout[0])["transitionDuration"]) * 1000;
 
-window.addEventListener("resize", function() {
-	if (window.matchMedia("(orientation: landscape)").matches) {
-		document.documentElement.style.height = window.innerHeight + "px";
-	} else {
-		document.documentElement.style.height = "auto";
-	}
-});
-
 $(document).ready(function() {
 	$("#contacts").load("content/contacts.html");
 	flyoutLoad();
