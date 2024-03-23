@@ -68,7 +68,7 @@ $paddingMainMenu: 6vh;
 	justify-content: $y;
 }
 
-@mixin fontSize($viewport-units, $min: 16px, $max: 36px) {
+@mixin fontSize($viewport-units, $min: 20px, $max: 36px) {
 	$breakpoint: 1000px;
 
 	@include _landscape {
@@ -173,127 +173,127 @@ main {
 		}
 	}
 
+	#flyout {
+		@include flexColumn;
+		color: $textColor2;
+		height: 100%;
+		overflow-x: hidden;
+		position: fixed;
+		right: 0;
+		transition: width $flyoutInterval ease-in-out;
+		width: $flyoutClosedSize;
+	
+		&.open {
+			width: 100%;
+	
+			#content {
+				height: calc(100% - #{$flyoutControlsHeight});
+				padding: $paddingContent;
+			}
+	
+			#controls {
+				@include flexRowAlign(flex-end);
+				bottom: 0;
+				height: $flyoutControlsHeight;
+				padding-right: $paddingContent;
+				width: 100%;
+			}
+		}
+	
+		#content {
+			@include fadeInAnimation;
+			@include flexColumn;
+			@include fontSize($fontContentVUs);
+			@include links($linkColor2, $linkHoverColor2);
+			font-family: $font2;
+			height: 100%;
+			overflow-y: auto;
+	
+			blockquote {
+				margin: -0.5em 0;
+				padding-left: 1.25em;
+				position: relative;
+	
+				&::before {
+					border-left: 4px solid #a3a3a3;
+					bottom: 1em;
+					content: "";
+					left: 0;
+					position: absolute;
+					top: 1em;
+				}
+			}
+	
+			h1, h2, h3, h4, h5, h6 {
+				padding-bottom: 0.5em;
+				padding-top: 0.75em;
+			}
+	
+			hr {
+				border: 1px solid #a3a3a3;
+			}
+	
+			ol, ul {
+				line-height: 2em;
+				padding-left: 2em;
+			}
+	
+			p {
+				line-height: 2em;
+				margin: 0.6em 0;
+			}
+		}
+	
+		#controls {
+			@include links($linkColor2, $linkHoverColor2, false);
+			@include textShadow(0.6);
+			display: none;
+			position: fixed;
+	
+			a {
+				padding-left: $paddingControls;
+				padding-right: $paddingControls;
+			}
+	
+			#back, #scroll-top {
+				display: none;
+			}
+	
+			.material-icons {
+				@include fontSize($fontIconsVUs, 25px);
+			}
+		}
+	
+		.menu {
+			@include fontSize($fontMenuVUs);
+			@include links($linkColor2, $linkHoverColor2, false);
+			@include flexColumnAlign;
+			@include textShadow(0.6);
+			flex-grow: 1;
+			font-family: $font1;
+			line-height: 1em;
+			text-align: center;
+	
+			a {
+				padding-bottom: calc(#{$paddingMenu} / 2);
+				padding-top: calc(#{$paddingMenu} / 2);
+			}
+		}
+	
+		.main-menu {
+			a {
+				padding-bottom: calc(#{$paddingMainMenu} / 2);
+				padding-top: calc(#{$paddingMainMenu} / 2);
+				width: 100%;
+			}
+		}
+	}
+
 	.main-text {
 		@include fadeInAnimation;
 		height: 100%;
 		user-select: none;
 		width: 100%;
-	}
-}
-
-#flyout {
-	@include flexColumn;
-	color: $textColor2;
-	height: 100%;
-	overflow-x: hidden;
-	position: fixed;
-	right: 0;
-	transition: width $flyoutInterval ease-in-out;
-	width: $flyoutClosedSize;
-
-	&.open {
-		width: 100%;
-
-		#content {
-			height: calc(100% - #{$flyoutControlsHeight});
-			padding: $paddingContent;
-		}
-
-		#controls {
-			@include flexRowAlign(flex-end);
-			bottom: 0;
-			height: $flyoutControlsHeight;
-			padding-right: $paddingContent;
-			width: 100%;
-		}
-	}
-
-	#content {
-		@include fadeInAnimation;
-		@include flexColumn;
-		@include fontSize($fontContentVUs);
-		@include links($linkColor2, $linkHoverColor2);
-		font-family: $font2;
-		height: 100%;
-		overflow-y: auto;
-
-		blockquote {
-			margin: -0.5em 0;
-			padding-left: 1.25em;
-			position: relative;
-
-			&::before {
-				border-left: 4px solid #a3a3a3;
-				bottom: 1em;
-				content: "";
-				left: 0;
-				position: absolute;
-				top: 1em;
-			}
-		}
-
-		h1, h2, h3, h4, h5, h6 {
-			padding-bottom: 0.5em;
-			padding-top: 0.75em;
-		}
-
-		hr {
-			border: 1px solid #a3a3a3;
-		}
-
-		ol, ul {
-			line-height: 2em;
-			padding-left: 2em;
-		}
-
-		p {
-			line-height: 2em;
-			margin: 0.6em 0;
-		}
-	}
-
-	#controls {
-		@include links($linkColor2, $linkHoverColor2, false);
-		@include textShadow(0.6);
-		display: none;
-		position: fixed;
-
-		a {
-			padding-left: $paddingControls;
-			padding-right: $paddingControls;
-		}
-
-		#back, #scroll-top {
-			display: none;
-		}
-
-		.material-icons {
-			@include fontSize($fontIconsVUs);
-		}
-	}
-
-	.menu {
-		@include fontSize($fontMenuVUs);
-		@include links($linkColor2, $linkHoverColor2, false);
-		@include flexColumnAlign;
-		@include textShadow(0.6);
-		flex-grow: 1;
-		font-family: $font1;
-		line-height: 1em;
-		text-align: center;
-
-		a {
-			padding-bottom: calc(#{$paddingMenu} / 2);
-			padding-top: calc(#{$paddingMenu} / 2);
-		}
-	}
-
-	.main-menu {
-		a {
-			padding-bottom: calc(#{$paddingMainMenu} / 2);
-			padding-top: calc(#{$paddingMainMenu} / 2);
-			width: 100%;
-		}
 	}
 }
 
