@@ -138,9 +138,7 @@ $paddingMainMenu: 6vh;
 }
 
 html, body {
-	@include _landscape {
-		min-height: 100vh;
-	}
+	min-height: 100vh;
 }
 
 main {
