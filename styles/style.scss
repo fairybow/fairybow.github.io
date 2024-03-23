@@ -9,10 +9,9 @@ $fontIconsVUs: 3;
 $flyoutClosedSize: 6em;
 $flyoutInterval: 0.5s;
 $flyoutControlsHeight: 80px;
-$mobileBreakpoint: 1000px;
 $textColor1: #ffffff;
 $textColor2: #dde1ec;
-$largeScreenDimension: 999px;
+$largeScreenDimension: 1024px;
 $linkColor1: #ffffff;
 $linkHoverColor1: #b4b4b4;
 $linkColor2: #a3a3a3;
@@ -27,26 +26,14 @@ $paddingMainMenu: 6vh;
 	100% { opacity: 1; }
 }
 
-@mixin _portrait {
-	@media (orientation: portrait) and (max-width: (#{$mobileBreakpoint} - 1)) {
-		@content;
-	}
-}
-
 @mixin _landscape {
-	@media (orientation: landscape) and (max-width: (#{$mobileBreakpoint} - 1)) {
+	@media (orientation: landscape) {
 		@content;
 	}
 }
 
-@mixin _desktop-wide {
-	@media (min-width: $mobileBreakpoint) {
-		@content;
-	}
-}
-
-@mixin _desktop-tall {
-	@media (min-height: $mobileBreakpoint) and (min-width: $mobileBreakpoint) {
+@mixin _portrait {
+	@media (orientation: portrait) {
 		@content;
 	}
 }
@@ -54,12 +41,6 @@ $paddingMainMenu: 6vh;
 @mixin backgroundImage($url) {
 	background: url($url) no-repeat center center fixed;
 	background-size: cover;
-}
-
-@mixin portrait {
-	@media (orientation: portrait) {
-		@content;
-	}
 }
 
 @mixin fadeInAnimation($seconds: 1) {
@@ -87,20 +68,22 @@ $paddingMainMenu: 6vh;
 	justify-content: $y;
 }
 
-@mixin fontSize($viewport-units, $min: 16px, $max: 40px) {
-	@include _portrait{
+@mixin fontSize($viewport-units, $min: 16px, $max: 36px) {
+	$breakpoint: 1000px;
+
+	@media (orientation: portrait) and (max-width: (#{$breakpoint} - 1)) {
 		font-size: max($min, min($viewport-units * 1vh, $max));
 	}
 
-	@include _landscape{
+	@media (orientation: portrait) and (max-width: (#{$breakpoint} - 1)) {
 		font-size: max($min, min($viewport-units * 1vw, $max));
 	}
 
-	@include _desktop-wide {
+	@media (min-width: $breakpoint) {
 		font-size: max($min, min($viewport-units * 0.5vw, $max));
 	}
 
-	@include _desktop-tall {
+	@media (min-height: $breakpoint) and (min-width: $breakpoint) {
 		font-size: max($min, min($viewport-units * 0.5vh, $max));
 	}
 }
@@ -152,7 +135,6 @@ main {
 	position: fixed;
 	vertical-align: middle;
 	width: 100%;
-	word-wrap: break-word;
 
 	header {
 		//@include backgroundImage("../assets/USGS-1.jpg");
@@ -282,11 +264,7 @@ main {
 			padding-right: $paddingControls;
 		}
 
-		#back {
-			display: none;
-		}
-
-		#scroll-top {
+		#back, #scroll-top {
 			display: none;
 		}
 
