@@ -1,6 +1,5 @@
 $font1: "Source Sans 3", sans-serif;
-$font2: $font1;
-$font3: "Aleo", serif;
+$font2: "Aleo", serif;
 $fontA11y: "Open Dyslexic", serif;
 $fontHeaderVUs: 3;
 $fontFooterVUs: 2;
@@ -139,6 +138,9 @@ $paddingMainMenu: 6vh;
 }
 
 main {
+	@include _landscape {
+		height: 100vh;
+	}
 	@include backgroundImage("../assets/USGS-1.jpg");
 	@include flexColumn;
 	@include textShadow(0.3);
@@ -228,7 +230,7 @@ main {
 		@include flexColumn;
 		@include fontSize($fontContentVUs);
 		@include links($linkColor2, $linkHoverColor2);
-		font-family: $font3;
+		font-family: $font2;
 		height: 100%;
 		overflow-y: auto;
 
@@ -297,7 +299,7 @@ main {
 		@include flexColumnAlign;
 		@include textShadow(0.6);
 		flex-grow: 1;
-		font-family: $font2;
+		font-family: $font1;
 		line-height: 1em;
 		text-align: center;
 
@@ -316,16 +318,16 @@ main {
 	}
 }
 
-#Aleo {
-	font-family: $font3 !important;
-}
-
-#OpenDyslexic {
-	font-family: $fontA11y !important;
-}
-
-#Source-Sans-3 {
+#font-1 {
 	font-family: $font1 !important;
+}
+
+#font-2 {
+	font-family: $font2 !important;
+}
+
+#font-a11y {
+	font-family: $fontA11y !important;
 }
 
 .a11y {

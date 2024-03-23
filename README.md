@@ -10,9 +10,9 @@ The CSS was made tolerable (even fun?) thanks to [Sass](https://sass-lang.com/).
 - [Marked](https://marked.js.org/) javascript library, for parsing and loading markdown;
 
 ### Fonts
-- <span id="Aleo">&ldquo;Aleo&rdquo;</span> by [Alessio Laiso](https://alessiolaiso.com/) (via [Google Fonts](https://fonts.google.com/));
-- <span id="OpenDyslexic">&ldquo;[OpenDyslexic](https://opendyslexic.org/)&rdquo;</span> by [Abbie Gonzalez](https://www.patreon.com/opendyslexic);
-- <span id="Source-Sans-3">&ldquo;Source Sans 3&rdquo;</span> by Paul D. Hunt (via [Google Fonts](https://fonts.google.com/));
+- <span id="font-2">&ldquo;Aleo&rdquo;</span> by [Alessio Laiso](https://alessiolaiso.com/) (via [Google Fonts](https://fonts.google.com/));
+- <span id="font-a11y">&ldquo;[OpenDyslexic](https://opendyslexic.org/)&rdquo;</span> by [Abbie Gonzalez](https://www.patreon.com/opendyslexic);
+- <span id="font-1">&ldquo;Source Sans 3&rdquo;</span> by Paul D. Hunt (via [Google Fonts](https://fonts.google.com/));
 - [Material Symbols and Icons](https://fonts.google.com/icons) by Google;
 
 ### Assets
