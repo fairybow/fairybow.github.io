@@ -137,13 +137,11 @@ $paddingMainMenu: 6vh;
 	padding: 0;
 }
 
-body {
+main {
 	@include _landscape {
 		height: 100vh;
+		width: 100vw;
 	}
-}
-
-main {
 	@include backgroundImage("../assets/USGS-1.jpg");
 	@include flexColumn;
 	@include textShadow(0.3);
