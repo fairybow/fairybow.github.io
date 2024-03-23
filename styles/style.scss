@@ -71,12 +71,16 @@ $paddingMainMenu: 6vh;
 @mixin fontSize($viewport-units, $min: 16px, $max: 36px) {
 	$breakpoint: 1000px;
 
-	@media (orientation: portrait) and (max-width: (#{$breakpoint} - 1)) {
-		font-size: max($min, min($viewport-units * 1vh, $max));
+	@include _landscape {
+		@media (max-width: (#{$breakpoint} - 1)) {
+			font-size: max($min, min($viewport-units * 1vw, $max));
+		}
 	}
 
-	@media (orientation: portrait) and (max-width: (#{$breakpoint} - 1)) {
-		font-size: max($min, min($viewport-units * 1vw, $max));
+	@include _portrait {
+		@media (max-width: (#{$breakpoint} - 1)) {
+			font-size: max($min, min($viewport-units * 1vh, $max));
+		}
 	}
 
 	@media (min-width: $breakpoint) {
@@ -121,11 +125,6 @@ $paddingMainMenu: 6vh;
 }
 
 main {
-	@include _landscape {
-		height: 100vh;
-		position: unset;
-		width: 100vw;
-	}
 	@include backgroundImage("../assets/USGS-1.jpg");
 	@include flexColumn;
 	@include textShadow(0.3);
